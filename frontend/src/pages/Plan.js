@@ -55,7 +55,8 @@ export default function Plan() {
     setLoadingExplain(true);
     setExplanation("");
     try {
-      const res = await axios.post("http://localhost:5000/api/explain", { topic: question });
+      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      const res = await axios.post(`${apiUrl}/api/explain`, { topic: question });
       setExplanation(res.data.explanation || "No explanation returned.");
     } catch (err) {
       const msg = err.response?.data?.error || "Could not get explanation. Check backend.";

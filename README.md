@@ -5,19 +5,22 @@ StudyMate AI solves this by letting a student upload their syllabus (PDF or text
 This repository is already linked to GitHub at `https://github.com/Aathavanvalan/Vanga-Padikalam--ai`.
 
 ### Frontend deployment
-- The frontend can be deployed to GitHub Pages using the workflow in `.github/workflows/deploy-frontend.yml`.
-- The site will be published from the `frontend/build` output.
-- After pushing to `main`, GitHub Pages will deploy the app automatically.
+- The frontend is configured for GitHub Pages using `.github/workflows/deploy-frontend.yml`.
+- The expected published URL is `https://Aathavanvalan.github.io/Vanga-Padikalam--ai`.
+- The GitHub Action will build the frontend from `frontend/build` and publish it automatically on pushes to `main` or `av-backend`.
 
-### Backend requirement
-- The frontend requires the backend API at `http://localhost:5000` for full functionality.
-- For a public demo, host the backend separately on a cloud service (Render, Vercel, Railway, etc.) and update the frontend API base URL accordingly.
+### Backend requirement for testing
+- The frontend UI needs the backend API to generate plans and explanations.
+- For local testing, run the backend on `http://localhost:5000` and the frontend on `http://localhost:3000`.
+- For public testing, host the backend on a service like Render, Vercel, or Railway and set the frontend API URL using the `REACT_APP_API_URL` secret in GitHub Actions.
 
 ## How to run locally
-1. Install dependencies in the root, backend, and frontend.
-2. Start the backend with `npm start` in `backend`.
-3. Start the frontend with `npm start` in `frontend`.
+1. In `backend`: install dependencies and run `npm start`.
+2. In `frontend`: install dependencies and run `npm start`.
+3. Open `http://localhost:3000` in the browser.
+4. Upload a syllabus PDF and generate a plan.
 
-## Notes
-- If you want people to try the app instantly, GitHub Pages can host the UI.
-- To make the full app live for everyone, the backend must be hosted on a server too.
+## Notes for testers
+- The UI is hosted at the GitHub Pages URL above if the workflow completes successfully.
+- If you want testers to use the full app, the backend must also be deployed and the frontend configured with the deployed backend URL.
+- The `.vscode/launch.json` file is configured for `http://localhost:3000` so this app can be launched locally in Chrome from VS Code.

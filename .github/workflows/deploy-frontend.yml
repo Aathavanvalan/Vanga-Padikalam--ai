@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - av-backend
 
 jobs:
   build-and-deploy:
@@ -24,6 +25,8 @@ jobs:
 
       - name: Build frontend
         working-directory: frontend
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         run: npm run build
 
       - name: Deploy to GitHub Pages
